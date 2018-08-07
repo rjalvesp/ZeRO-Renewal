@@ -17,6 +17,9 @@ html, body {
     cursor: pointer;
     color: d0d0d0;
     margin: 0px;
+    &:focus {
+        outline: 0 !important;
+    }
     &:hover {
         color: #71D0C6;
     }
@@ -24,7 +27,13 @@ html, body {
         color: white;
     }
 }
-
+.zr-form-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+}
 .zr-container {
     &.zr-container__image {
         background-image: url(./assets/images/poring.png);

@@ -12,6 +12,9 @@ import { HomeComponent } from './components/content/home/home.component';
 import { AppRoutingModule } from './routes/app.router';
 import { DiscordComponent } from './components/content/discord/discord.component';
 import { SignUpComponent } from './components/content/sign-up/sign-up.component';
+import { SignInComponent } from './components/content/sign-in/sign-in.component';
+import { DownloadsComponent } from './components/content/downloads/downloads.component';
+import { DonateComponent } from './components/content/donate/donate.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { SignUpComponent } from './components/content/sign-up/sign-up.component'
     MenuComponent,
     HomeComponent,
     DiscordComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignInComponent,
+    DownloadsComponent,
+    DonateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignUpModel } from '../../../models/sign-up.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class SignUpComponent implements OnInit {
 
   recaptcha: string = '6LcLrmgUAAAAAN9BknE-6Xtinc0IWFRJHO5y2FK9';
+  model: SignUpModel = new SignUpModel({});
   constructor() { }
 
   ngOnInit() {
   }
-
 }

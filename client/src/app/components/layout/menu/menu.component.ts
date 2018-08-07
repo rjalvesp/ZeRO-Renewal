@@ -13,9 +13,9 @@ export class MenuComponent implements OnInit {
     new MenuItem('fas fa-home', 'home', ''),
     new MenuItem('fab fa-discord', 'discord', 'discord'),
     new MenuItem('fas fa-user-plus', 'sign up', 'sign-up'),
-    new MenuItem('fas fa-sign-in-alt', 'sign in', ''),
-    new MenuItem('fas fa-download', 'downloads', ''),
-    new MenuItem('fas fa-donate', 'donate', ''),
+    new MenuItem('fas fa-sign-in-alt', 'sign in', 'sign-in'),
+    new MenuItem('fas fa-download', 'downloads', 'downloads'),
+    new MenuItem('fas fa-donate', 'donate', 'donate'),
   ];
   selected: MenuItem = this.items[0];
   constructor(private router: Router, private route: ActivatedRoute) { }
