@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StatusService } from './services/status.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  constructor(private statusService: StatusService){
+    this.statusService.timezone().subscribe(()=>{});
+    this.statusService.info().subscribe(()=>{});
+    
+    timer(0,30000).subscribe(()=>{
+      this.statusService.online().subscribe(()=>{});
+    })
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "name": "predictor",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm-run-all --parallel s c",
+    "s": "cd server && nodemon --watch . --exec ./node_modules/.bin/ts-node -- ./bin/www",
+    "c": "cd client && ng serve --proxy-config proxy.conf.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.2"
+  }
+}

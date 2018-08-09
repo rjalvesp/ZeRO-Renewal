@@ -1,0 +1,10 @@
+.vscode
+node_modules
+server/node_modules
+server/out-tsc
+
+client/node_modules
+client/dist-server
+client/tmp
+client/out-tsc
+
