@@ -1,6 +1,8 @@
+import { AuthService } from './services/auth.service';
 import { TokenReducer } from './store/reducers/token.reducer';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '../../node_modules/@ngrx/store';
@@ -25,6 +27,10 @@ import { StatusService } from './services/status.service';
 import { TimezoneReducer } from './store/reducers/timezone.reducer';
 import { OnlineReducer } from './store/reducers/online.reducer';
 import { StatusReducer } from './store/reducers/status.reducer';
+import { UsersService } from './services/user.service';
+import { UserReducer } from './store/reducers/user.reducer';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { InfoComponent } from './components/content/info/info.component';
 
 
 @NgModule({
@@ -37,16 +43,18 @@ import { StatusReducer } from './store/reducers/status.reducer';
     SignUpComponent,
     SignInComponent,
     DownloadsComponent,
-    DonateComponent
+    DonateComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    SnotifyModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
-    StoreModule.forRoot({timezone: TimezoneReducer, token: TokenReducer, online: OnlineReducer, status: StatusReducer}),
+    StoreModule.forRoot({timezone: TimezoneReducer, token: TokenReducer, online: OnlineReducer, status: StatusReducer, user: UserReducer}),
     
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -54,7 +62,16 @@ import { StatusReducer } from './store/reducers/status.reducer';
     }),
   ],
   providers: [
-    StatusService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService,
+    AuthService,
+    StatusService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

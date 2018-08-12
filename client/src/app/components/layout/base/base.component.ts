@@ -26,7 +26,6 @@ export class BaseComponent implements OnInit {
       this.online = online;
     });
     store.select('status').subscribe((status: Status) => {
-      console.log(status)
       this.status = status;
     });
   }

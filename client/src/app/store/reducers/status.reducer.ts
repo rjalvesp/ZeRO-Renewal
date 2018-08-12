@@ -1,5 +1,5 @@
-import { StatusActionsEnum } from './../actions/Status.actions';
-import * as StatusActions from '../actions/Status.actions';
+import { StatusActionsEnum } from './../actions/status.actions';
+import * as StatusActions from '../actions/status.actions';
 import { Status } from '../../models/status.model';
 export function StatusReducer(state: Status, action: StatusActions.Actions) {
     switch(action.type){

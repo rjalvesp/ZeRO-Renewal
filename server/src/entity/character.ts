@@ -54,6 +54,8 @@ export class Character {
     @Column()
     manner: number = 0;
     @Column()
+    party_id: number = 0;
+    @Column()
     guild_id: number = 0;
     @Column()
     pet_id: number = 0;
@@ -123,6 +125,10 @@ export class Character {
     hotkey_rowshift: number = 0;
     @Column()
     last_login: string = '';
+    @Column()
+    title_id: number = 0;
+    @Column()
+    show_equip: number = 0;
 
     constructor(){
     }

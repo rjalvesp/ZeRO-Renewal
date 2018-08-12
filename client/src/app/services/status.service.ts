@@ -30,7 +30,6 @@ export class StatusService {
 
   info(): Observable<any> {
     return this.http.get<any>(`${this.url}/info`).map((response: any)=>{
-      console.log(response);
         let status = new Status(response);
         this.store.dispatch(new StatusActions.Store(status));
         return status;

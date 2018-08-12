@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 import { Token } from '../../models/token.model';
 export enum TokenActionsEnum {
-    StoreToken = 'STORE',
-    RetrieveToken = 'RETRIEVE'
+    StoreToken = '[Token] STORE',
+    RetrieveToken = '[Token] RETRIEVE'
 };
 
   

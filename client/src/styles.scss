@@ -36,6 +36,9 @@ html, body {
     background: #5BA59E;
     padding: 5px 10px;
     font-size: 16px;
+    margin: 0px important;
+    display: flex;
+    flex-wrap: wrap;
 }
 .zr-form-container {
     display: flex;
@@ -97,10 +100,12 @@ html, body {
         text-align: left;
     }
     li {
-      padding: 10px 0px;
-      &.active {
-        color: white;
-      }
+        &.active {
+            color: white;
+        }
+        p {
+            padding: 10px 0px;
+        }
     }
 }
 .zr-menu__selected {
@@ -125,7 +130,31 @@ input {
     background: transparent;
     border-bottom: 1px solid white;
     color: white;
+    min-width: 175px;
     &:focus {
         outline: 0 !important;
     }
+    &::-moz-placeholder { 
+        /* Firefox 19+ */
+        color: white;
+    }
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color:white;
+    }
+    &:-ms-input-placeholder { 
+        /* IE 10+ */
+        color: white;
+    }
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        color: white;
+    }
+}
+
+.zr-icon {
+    max-width: 15px;
+}
+.zr-input {
+    min-width: 175px;
 }

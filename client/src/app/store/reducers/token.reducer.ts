@@ -3,6 +3,7 @@ import { Token } from '../../models/token.model';
 export function  TokenReducer(state: Token = new Token({}), action: TokenActions) {
     switch(action.type){
         case TokenActionsEnum.StoreToken:
+            state = action.payload;
             window.localStorage.setItem('token', JSON.stringify(state));
             return state;
         case TokenActionsEnum.RetrieveToken:

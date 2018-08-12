@@ -6,8 +6,10 @@ import { DiscordComponent } from '../components/content/discord/discord.componen
 import { SignInComponent } from '../components/content/sign-in/sign-in.component';
 import { DownloadsComponent } from '../components/content/downloads/downloads.component';
 import { DonateComponent } from '../components/content/donate/donate.component';
+import { InfoComponent } from '../components/content/info/info.component';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'info', component: InfoComponent },
     { path: 'discord', component: DiscordComponent },
     { path: 'donate', component: DonateComponent },
     { path: 'downloads', component: DownloadsComponent },
