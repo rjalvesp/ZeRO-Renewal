@@ -8,16 +8,20 @@ export class CharactersController {
             .then((value: number)=>{ res.status(200).json(value); })
             .catch((err: any)=>{ res.status(200).json(0); });
     }
-    static async info(req: any, res: any) {
-        let connection = await RAthenaConnection;
-        connection.getRepository(ServerInfo)
-            .createQueryBuilder('serverInfo')
-            .getOne()
-            .then((value: any)=>{ res.status(200).json(value? value : {}); })
-            .catch((err: any)=>{ res.status(400).json(err); });
+    static info(req: any, res: any) {
+        RAthenaConnection
+            .then((connection)=>{
+                let serverInfoRespository = connection.getRepository(ServerInfo);
+                serverInfoRespository.findOne()
+                    .then((value: any)=>{ res.status(200).json(value? value : {}); })
+                    .catch((err: any)=>{ res.status(400).json(err); });
+            })
+            .catch((err)=>{
+                res.status(500).json(err);
+            });
     }
     
     static timezone(req: any, res: any){
-        res.status(200).json(moment().zone());
+        res.status(200).json(moment().utcOffset());
     }
 }

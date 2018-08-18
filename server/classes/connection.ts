@@ -10,28 +10,28 @@ export const RAthenaConnection = createConnection({
     type: "mysql",
     host: "127.0.0.1",
     port: 3306,
-    username: "ragnarok",
-    password: "ragnarok",
+    username: "root",
+    password: "ram10110.S1",
     database: "rathena",
     entities: [
         Character,
         ServerInfo,
         Login
     ],
-    synchronize: true,
+    synchronize: false,
     logging: false
 })
 export const WebConnection = createConnection({
     type: "mysql",
     host: "127.0.0.1",
     port: 3306,
-    username: "ragnarok",
-    password: "ragnarok",
+    username: "web",
+    password: "qwe123.S1",
     database: "web",
     entities: [
         User,
         Token
     ],
-    synchronize: true,
+    synchronize: false,
     logging: false
 })

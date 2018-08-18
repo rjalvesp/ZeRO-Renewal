@@ -6,10 +6,8 @@ export function TimezoneReducer(state: number = 0, action: TimezoneActions.Actio
             state = action.payload;
             window.localStorage.setItem('timezone', state.toString());
             return state;
-        case TimezoneActionsEnum.RetrieveTimezone:
-            state = parseInt(window.localStorage.getItem('timezone').toString(), 10);
-            return state;
         default:
+            state = parseInt(window.localStorage.getItem('timezone').toString(), 10);
             return state;
     }
 };

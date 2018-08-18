@@ -7,9 +7,6 @@ export function StatusReducer(state: Status, action: StatusActions.Actions) {
             state = action.payload;
             window.localStorage.setItem('Status', state.toString());
             return state;
-        case StatusActionsEnum.RetrieveStatus:
-            // state = parseInt(window.localStorage.getItem('Status').toString(), 10);
-            return state;
         default:
             return state;
     }

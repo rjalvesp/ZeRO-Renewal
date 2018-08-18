@@ -1,8 +1,8 @@
-import {Entity, PrimaryColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity({name: "login"})
 export class Login {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     account_id: number = 0;
     @Column()
     userid: string = '';
@@ -21,9 +21,9 @@ export class Login {
     @Column()
     expiration_time: number = 0;
     @Column()
-    lastlogin: string = '';
-    @Column()
     logincount: number = 0;
+    @Column()
+    lastlogin: string = '';
     @Column()
     last_ip: string = '';
     @Column()

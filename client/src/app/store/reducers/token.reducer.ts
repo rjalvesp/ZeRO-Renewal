@@ -6,10 +6,8 @@ export function  TokenReducer(state: Token = new Token({}), action: TokenActions
             state = action.payload;
             window.localStorage.setItem('token', JSON.stringify(state));
             return state;
-        case TokenActionsEnum.RetrieveToken:
-            state = new Token(JSON.parse(window.localStorage.getItem('token')));
-            return state;
         default:
+            state = new Token(JSON.parse(window.localStorage.getItem('token')));
             return state;
     }
 };

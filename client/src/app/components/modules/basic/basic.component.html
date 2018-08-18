@@ -1,0 +1,13 @@
+
+<app-menu class="align-self-center"></app-menu>    
+<div class="zr-topbar text-white">
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" *ngIf="loaded"><i class="fas fa-user"></i> {{online}}</div>
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-md-center text-lg-center text-xl-center" *ngIf="status">
+        <div *ngIf="!status.isOn">Server Temporarily Off</div>
+        <div *ngIf="status.isOn">
+            Rates: {{status.exp / 100}}/{{status.jexp / 100}}/{{status.drop / 100}}
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-md-right text-lg-right text-xl-right" *ngIf="loaded"><i class="fas fa-clock"></i> {{serverTime}}</div>
+</div>
+<router-outlet></router-outlet>

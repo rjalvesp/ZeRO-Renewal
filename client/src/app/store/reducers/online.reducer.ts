@@ -6,9 +6,6 @@ export function OnlineReducer(state: number = 0, action: OnlineActions.Actions) 
             state = action.payload;
             window.localStorage.setItem('online', state.toString());
             return state;
-        case OnlineActionsEnum.RetrieveOnline:
-            // state = parseInt(window.localStorage.getItem('Online').toString(), 10);
-            return state;
         default:
             return state;
     }

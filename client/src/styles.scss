@@ -26,6 +26,11 @@ html, body {
     &.active {
         color: white;
     }
+    &.zr-link--admin {
+        &:hover {
+            color: #011f4b;
+        }
+    }
 }
 .zr-topbar {
 
@@ -106,6 +111,9 @@ html, body {
         p {
             padding: 10px 0px;
         }
+    }
+    &.zr-menu--admin {
+        background: #005b96;
     }
 }
 .zr-menu__selected {

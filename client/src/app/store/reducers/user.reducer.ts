@@ -6,10 +6,8 @@ export function  UserReducer(state: User = new User({}), action: UserActions) {
             state = action.payload;
             window.localStorage.setItem('user', JSON.stringify(state));
             return state;
-        case UserActionsEnum.RetrieveUser:
-            state = new User(JSON.parse(window.localStorage.getItem('user')));
-            return state;
         default:
+            state = new User(JSON.parse(window.localStorage.getItem('user')));
             return state;
     }
 };

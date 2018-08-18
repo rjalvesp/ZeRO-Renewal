@@ -31,6 +31,13 @@ import { UsersService } from './services/user.service';
 import { UserReducer } from './store/reducers/user.reducer';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { InfoComponent } from './components/content/info/info.component';
+import { ProfileComponent } from './components/content/profile/profile.component';
+import { NewsComponent } from './components/content/news/news.component';
+import { BasicComponent } from './components/modules/basic/basic.component';
+import { AdminComponent } from './components/modules/admin/admin.component';
+import { AdminMenuComponent } from './components/layout/admin-menu/admin-menu.component';
+import { AdminNewsFormComponent } from './components/content/admin-news-form/admin-news-form.component';
+import { AdminNewsIndexComponent } from './components/content/admin-news-index/admin-news-index.component';
 
 
 @NgModule({
@@ -44,7 +51,14 @@ import { InfoComponent } from './components/content/info/info.component';
     SignInComponent,
     DownloadsComponent,
     DonateComponent,
-    InfoComponent
+    InfoComponent,
+    ProfileComponent,
+    NewsComponent,
+    BasicComponent,
+    AdminComponent,
+    AdminMenuComponent,
+    AdminNewsFormComponent,
+    AdminNewsIndexComponent
   ],
   imports: [
     BrowserModule,

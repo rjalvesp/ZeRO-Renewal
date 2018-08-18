@@ -1,8 +1,8 @@
 <div class="zr-menu__selected">ZeRO: {{selected.text}}</div>
-<ul class="zr-menu">
+<ul class="zr-menu zr-menu--admin">
   <li *ngFor="let item of items;" [ngClass]="{ active: selected.text === item.text }">
     <ng-container *ngIf="item.canShow">
-      <p class="zr-link" data-toggle="tooltip"
+      <p class="zr-link zr-link--admin" data-toggle="tooltip"
         [routerLink]="item.url" [title]="item.text">
         <i [class]="item.icon"></i>
       </p>
