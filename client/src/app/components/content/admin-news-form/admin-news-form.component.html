@@ -1,3 +1,27 @@
-<p>
-  admin-news-form works!
-</p>
+<div class="col zr-admin-container">
+  <form class="form-material tlg-form" #adminForm="ngForm">
+    
+    <div class="row">
+        <div class="form-group form-default col-12 pb-3">
+          <label class="float-label col">Date: {{model.date}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group form-default col-12 pb-3">
+          <label class="float-label col">HTML</label>
+          <textarea class="form-control" required type="text" [(ngModel)]="model.html" name="html" #html="ngModel"></textarea>
+        </div>
+    </div>
+      
+    <div class="row col d-flex pb-3">
+      <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-danger" (click)="back()"> 
+          <i class="fas fa-angle-left"></i>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!adminForm.form.valid"> 
+          Save <i class="fas fa-save pl-3"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

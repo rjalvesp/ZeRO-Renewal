@@ -1,3 +1,32 @@
-<p>
-  admin-news-index works!
-</p>
+
+<div class="col pb-4 pt-4 tlg-admin-container">
+  <div class="col d-flex justify-content-end pb-5">
+    <button type="button" class="btn btn" (click)="GoTo('')">
+      <i class="fa fa-plus"></i> Create
+    </button>
+  </div>
+  <div class="col pb-5">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td class="text-right">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-sm btn-primary" (click)="GoTo(item.id)"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="Delete(item.id)"><i class="fa fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="items?.length === 0">
+          <td colspan="5">No Records</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

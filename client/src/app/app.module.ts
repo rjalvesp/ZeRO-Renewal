@@ -6,6 +6,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '../../node_modules/@ngrx/store';
+import { DataTablesModule } from 'angular-datatables';
 import { environment } from '../environments/environment'; // Angular CLI environemnt
 
 import { FormsModule } from '@angular/forms';
@@ -38,6 +39,10 @@ import { AdminComponent } from './components/modules/admin/admin.component';
 import { AdminMenuComponent } from './components/layout/admin-menu/admin-menu.component';
 import { AdminNewsFormComponent } from './components/content/admin-news-form/admin-news-form.component';
 import { AdminNewsIndexComponent } from './components/content/admin-news-index/admin-news-index.component';
+import { FaqsService } from './services/faqs.service';
+import { NewsService } from './services/news.service';
+import { AdminFaqsIndexComponent } from './components/content/admin-faqs-index/admin-faqs-index.component';
+import { AdminFaqsFormComponent } from './components/content/admin-faqs-form/admin-faqs-form.component';
 
 
 @NgModule({
@@ -58,7 +63,9 @@ import { AdminNewsIndexComponent } from './components/content/admin-news-index/a
     AdminComponent,
     AdminMenuComponent,
     AdminNewsFormComponent,
-    AdminNewsIndexComponent
+    AdminNewsIndexComponent,
+    AdminFaqsIndexComponent,
+    AdminFaqsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +73,7 @@ import { AdminNewsIndexComponent } from './components/content/admin-news-index/a
     FormsModule,
     AppRoutingModule,
     SnotifyModule,
+    DataTablesModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
     StoreModule.forRoot({timezone: TimezoneReducer, token: TokenReducer, online: OnlineReducer, status: StatusReducer, user: UserReducer}),
@@ -85,7 +93,9 @@ import { AdminNewsIndexComponent } from './components/content/admin-news-index/a
     SnotifyService,
     AuthService,
     StatusService,
-    UsersService
+    UsersService,
+    FaqsService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

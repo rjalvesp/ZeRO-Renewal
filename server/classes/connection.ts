@@ -6,6 +6,8 @@ import { ServerInfo } from "../src/entity/server-info";
 import { User } from "../src/entity/user";
 import { Login } from "../src/entity/login";
 import { Token } from "../src/entity/token";
+import { News } from "../src/entity/news";
+import { Faq } from "../src/entity/faq";
 export const RAthenaConnection = createConnection({
     type: "mysql",
     host: "127.0.0.1",
@@ -30,8 +32,10 @@ export const WebConnection = createConnection({
     database: "web",
     entities: [
         User,
-        Token
+        Token,
+        News,
+        Faq
     ],
-    synchronize: false,
+    synchronize: true,
     logging: false
 })

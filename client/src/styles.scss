@@ -74,7 +74,7 @@ html, body {
     &.zr-title__home {
         font-size: 96px;
         padding-top: 25%;
-        width: calc(100% - 90px) !important;
+        width: calc(80%) !important;
         /* Safari */
         -webkit-transform: rotate(-10deg);
     
@@ -166,3 +166,55 @@ input {
 .zr-input {
     min-width: 175px;
 }
+
+
+.dataTables_wrapper {
+    background: #fafafa;
+    margin: 10px 0px;
+    padding:  10px 0px;
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+    width: 100% !important;
+    table {
+      padding: 0px 10px;
+      border-bottom: 0px !important;
+      th {  
+        text-align: center;
+      }
+      tbody {
+        background: transparent !important;
+        tr {
+            background: transparent !important;
+        }
+      }
+    }
+    .dataTables_filter {
+      padding-right: 30px;
+      input {
+        color: black !important
+      }
+    }
+  
+  }
+  .dataTable {
+    width: 100% !important;
+  }
+  .dataTables_length, .dataTables_empty {
+    display: none;
+  }
+  .dataTables_info {
+    margin: 10px;
+  }
+  .dataTables_paginate {
+    .ellipsis::after {
+      display: none;
+    }
+  }
+
+  .zr-admin-container {
+        background-color: #f5f5f5;
+        color: black;
+        border-radius: 5px;
+        width: calc(100% - 30px) !important;
+        padding: 20px;
+  }

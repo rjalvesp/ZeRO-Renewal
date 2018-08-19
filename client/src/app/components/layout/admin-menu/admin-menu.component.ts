@@ -40,6 +40,7 @@ export class AdminMenuComponent implements OnInit {
   }
   load(url: string) {
     this.selected = this.items.find((i: MenuItem)=>{
+      url = url.split('/create').join('');
       return i.url === url;
     })
   }

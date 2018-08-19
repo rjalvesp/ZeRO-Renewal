@@ -8,29 +8,28 @@ import { DataTableResponse } from '../../../models/data-table-response.model';
 import { Router } from '@angular/router';
 import * as sweetalert from 'sweetalert';
 import { Store } from '@ngrx/store';
-import { News } from '../../../models/news.model';
 import { Token } from '../../../models/token.model';
-import { NewsService } from '../../../services/news.service';
+import { FaqsService } from '../../../services/faqs.service';
+import { Faq } from '../../../models/faq.model';
 
 @Component({
-  selector: 'app-admin-news-index',
-  templateUrl: './admin-news-index.component.html',
-  styleUrls: ['./admin-news-index.component.scss']
+  selector: 'app-admin-faqs-index',
+  templateUrl: './admin-faqs-index.component.html',
+  styleUrls: ['./admin-faqs-index.component.scss']
 })
-export class AdminNewsIndexComponent implements OnInit {
+export class AdminFaqsIndexComponent implements OnInit {
 
-  
   @ViewChild(DataTableDirective)
   datatableElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
-  items: Array<News>;
+  items: Array<Faq>;
   swal : any = sweetalert;
   token: Token;
   constructor(
     private router: Router,
     private store: Store<AppState>, 
     private http: HttpClient, 
-    private newsService: NewsService,
+    private faqsService: FaqsService,
     private snotifyService: SnotifyService
   ) {
     this.store.select('token').subscribe((token: Token)=>{
@@ -50,7 +49,7 @@ export class AdminNewsIndexComponent implements OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         this.http
           .post<DataTableResponse>(
-            this.newsService.baseUrl + '/datatable',
+            this.faqsService.baseUrl + '/datatable',
             dataTablesParameters, 
             {
               headers: new HttpHeaders({
@@ -58,7 +57,7 @@ export class AdminNewsIndexComponent implements OnInit {
               })
             }
           ).subscribe((resp: any) => {
-            this.items = resp.data.map((data)=>{ return new News(data)});
+            this.items = resp.data.map((data)=>{ return new Faq(data)});
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -71,8 +70,8 @@ export class AdminNewsIndexComponent implements OnInit {
   }
 
   GoTo(value: string){
-    if (!value) return this.router.navigate(['/admin/news/create'])
-    return this.router.navigate(['/admin/news/' + value]);
+    if (!value) return this.router.navigate(['/admin/faqs/create'])
+    return this.router.navigate(['/admin/faqs/' + value]);
   }
 
 
@@ -83,16 +82,16 @@ export class AdminNewsIndexComponent implements OnInit {
       buttons: [true, true],
     }).then((value)=>{
       if (!value) return;
-      this.snotifyService.async('Deleting News...', 
+      this.snotifyService.async('Deleting Faq...', 
         Observable.create(observer => {
-          this.newsService.delete(id).subscribe(()=>{
+          this.faqsService.delete(id).subscribe(()=>{
             this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
               dtInstance.ajax.reload();
             });
               
             observer.next({
               title: 'Complete',
-              body: 'News Deleted!',
+              body: 'Faq Deleted!',
               config: {
                 closeOnClick: true,
                 timeout: 2000,
