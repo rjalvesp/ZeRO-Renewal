@@ -43,6 +43,9 @@ import { FaqsService } from './services/faqs.service';
 import { NewsService } from './services/news.service';
 import { AdminFaqsIndexComponent } from './components/content/admin-faqs-index/admin-faqs-index.component';
 import { AdminFaqsFormComponent } from './components/content/admin-faqs-form/admin-faqs-form.component';
+import { AdminFaqCategoriesIndexComponent } from './components/content/admin-faq-categories-index/admin-faq-categories-index.component';
+import { AdminFaqCategoriesFormComponent } from './components/content/admin-faq-categories-form/admin-faq-categories-form.component';
+import { FaqsCategoriesService } from './services/faqs-categories.service';
 
 
 @NgModule({
@@ -65,7 +68,9 @@ import { AdminFaqsFormComponent } from './components/content/admin-faqs-form/adm
     AdminNewsFormComponent,
     AdminNewsIndexComponent,
     AdminFaqsIndexComponent,
-    AdminFaqsFormComponent
+    AdminFaqsFormComponent,
+    AdminFaqCategoriesIndexComponent,
+    AdminFaqCategoriesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +100,7 @@ import { AdminFaqsFormComponent } from './components/content/admin-faqs-form/adm
     StatusService,
     UsersService,
     FaqsService,
+    FaqsCategoriesService,
     NewsService
   ],
   bootstrap: [AppComponent]

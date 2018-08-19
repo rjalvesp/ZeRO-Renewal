@@ -8,6 +8,7 @@ import { Login } from "../src/entity/login";
 import { Token } from "../src/entity/token";
 import { News } from "../src/entity/news";
 import { Faq } from "../src/entity/faq";
+import { FaqCategory } from "../src/entity/faq-category";
 export const RAthenaConnection = createConnection({
     type: "mysql",
     host: "127.0.0.1",
@@ -34,7 +35,8 @@ export const WebConnection = createConnection({
         User,
         Token,
         News,
-        Faq
+        Faq,
+        FaqCategory
     ],
     synchronize: true,
     logging: false

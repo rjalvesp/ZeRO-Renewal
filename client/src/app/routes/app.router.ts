@@ -15,6 +15,8 @@ import { AdminNewsIndexComponent } from '../components/content/admin-news-index/
 import { AdminNewsFormComponent } from '../components/content/admin-news-form/admin-news-form.component';
 import { AdminFaqsIndexComponent } from '../components/content/admin-faqs-index/admin-faqs-index.component';
 import { AdminFaqsFormComponent } from '../components/content/admin-faqs-form/admin-faqs-form.component';
+import { AdminFaqCategoriesIndexComponent } from '../components/content/admin-faq-categories-index/admin-faq-categories-index.component';
+import { AdminFaqCategoriesFormComponent } from '../components/content/admin-faq-categories-form/admin-faq-categories-form.component';
 const appRoutes: Routes = [
   
   {
@@ -27,7 +29,10 @@ const appRoutes: Routes = [
       { path: 'news/:id', component: AdminNewsFormComponent },
       { path: 'faqs', component: AdminFaqsIndexComponent },
       { path: 'faqs/create', component: AdminFaqsFormComponent },
-      { path: 'faqs/:id', component: AdminFaqsFormComponent }
+      { path: 'faqs/:id', component: AdminFaqsFormComponent },
+      { path: 'faqs-categories', component: AdminFaqCategoriesIndexComponent },
+      { path: 'faqs-categories/create', component: AdminFaqCategoriesFormComponent },
+      { path: 'faqs-categories/:id', component: AdminFaqCategoriesFormComponent }
     ]
   },
   { 

@@ -16,6 +16,7 @@ export class AdminMenuComponent implements OnInit {
     new MenuItem('fas fa-home', 'home', '/admin', MenuConditional.default),
     new MenuItem('fas fa-newspaper', 'news', '/admin/news', MenuConditional.default),
     new MenuItem('fas fa-question', 'faqs', '/admin/faqs', MenuConditional.default),
+    new MenuItem('far fa-question-circle', 'faq categories', '/admin/faqs-categories', MenuConditional.default),
   ];
   selected: MenuItem = this.items[0];
   user: User;
@@ -40,8 +41,9 @@ export class AdminMenuComponent implements OnInit {
   }
   load(url: string) {
     this.selected = this.items.find((i: MenuItem)=>{
-      url = url.split('/create').join('');
-      return i.url === url;
+      let route = url.split('/');
+      console.log(route.slice(0, 3).join('/'));
+      return i.url === route.slice(0, 3).join('/');
     })
   }
 

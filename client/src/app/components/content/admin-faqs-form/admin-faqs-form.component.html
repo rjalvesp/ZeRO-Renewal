@@ -1,3 +1,36 @@
-<p>
-  admin-faqs-form works!
-</p>
+<div class="col zr-admin-container">
+  <form class="form-material" #adminForm="ngForm">
+    
+    <div class="row">
+      <div class="form-group form-default col-12 pb-3">
+        <label class="float-label col">Category</label>
+        <select class="form-control" required type="text" [(ngModel)]="model.id_category" name="category" #category="ngModel">
+            <option *ngFor="let option of categories" [value]="option.id">{{option.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group form-default col-12 pb-3">
+        <label class="float-label col">Question</label>
+        <input class="form-control" required type="text" [(ngModel)]="model.question" name="question" #question="ngModel"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group form-default col-12 pb-3">
+        <label class="float-label col">Answer</label>
+        <textarea class="form-control" required type="text" [(ngModel)]="model.answer" name="answer" #answer="ngModel"></textarea>
+      </div>
+    </div>
+      
+    <div class="row col d-flex pb-3">
+      <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-danger" (click)="back()"> 
+          <i class="fas fa-angle-left"></i>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!adminForm.form.valid"> 
+          Save <i class="fas fa-save pl-3"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

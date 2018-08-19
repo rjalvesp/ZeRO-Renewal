@@ -1,23 +1,27 @@
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
-import { News } from '../../../models/news.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppState } from '../../../store/states/state';
-import { SnotifyService } from 'ng-snotify';
+import { FaqCategory } from './../../../models/faq-category.model';
+import { Token } from './../../../models/token.model';
 import { Store } from '@ngrx/store';
-import { NewsService } from '../../../services/news.service';
+import { AppState } from './../../../store/states/state';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FaqsCategoriesService } from '../../../services/faqs-categories.service';
+import { SnotifyService } from 'ng-snotify';
+import { Observable } from 'rxjs';
+
 @Component({
-  selector: 'app-admin-news-form',
-  templateUrl: './admin-news-form.component.html',
-  styleUrls: ['./admin-news-form.component.scss']
+  selector: 'app-admin-faq-categories-form',
+  templateUrl: './admin-faq-categories-form.component.html',
+  styleUrls: ['./admin-faq-categories-form.component.scss']
 })
-export class AdminNewsFormComponent implements OnInit {
-  model: News = new News({});
+export class AdminFaqCategoriesFormComponent implements OnInit {
+
+  model: FaqCategory = new FaqCategory({});
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<AppState>,
-    private newsService: NewsService,
+    private faqsCategoriesService: FaqsCategoriesService,
     private snotifyService: SnotifyService
   ) { 
     
@@ -25,21 +29,22 @@ export class AdminNewsFormComponent implements OnInit {
 
   ngOnInit() {
     let id : string = this.route.snapshot.paramMap.get('id'); 
+    console.log(id);
     if (!id) return;
     this.LoadModel(parseInt(id, 10));
   }
 
   back(){
-    this.router.navigate(['/admin/news']);
+    this.router.navigate(['/admin/faqs-categories']);
   }
 
   submit(){
-    this.snotifyService.async('Saving News...', 
+    this.snotifyService.async('Saving Faq Category...', 
       Observable.create(observer => {
-        this.newsService.save(this.model).subscribe(()=>{
+        this.faqsCategoriesService.save(this.model).subscribe(()=>{
           observer.next({
             title: 'Complete',
-            body: 'News Saved!',
+            body: 'Faq Category Saved!',
             config: {
               closeOnClick: true,
               timeout: 2000,
@@ -64,13 +69,13 @@ export class AdminNewsFormComponent implements OnInit {
   }
 
   LoadModel(id: number){
-    this.snotifyService.async('Loading News...', 
+    this.snotifyService.async('Loading Faq Category...', 
       Observable.create(observer => {
-        this.newsService.get(id).subscribe((model: News)=>{
-          this.model = new News(model);
+        this.faqsCategoriesService.get(id).subscribe((model: FaqCategory)=>{
+          this.model = new FaqCategory(model);
           observer.next({
             title: 'Complete',
-            body: 'News Loaded!',
+            body: 'Faq Category Loaded!',
             config: {
               closeOnClick: true,
               timeout: 2000,
@@ -93,5 +98,4 @@ export class AdminNewsFormComponent implements OnInit {
       })
     );
   }
-
 }

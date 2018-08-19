@@ -9,27 +9,28 @@ import { Router } from '@angular/router';
 import * as sweetalert from 'sweetalert';
 import { Store } from '@ngrx/store';
 import { Token } from '../../../models/token.model';
-import { FaqsService } from '../../../services/faqs.service';
-import { Faq } from '../../../models/faq.model';
+import { FaqCategory } from '../../../models/faq-category.model';
+import { FaqsCategoriesService } from '../../../services/faqs-categories.service';
+
 
 @Component({
-  selector: 'app-admin-faqs-index',
-  templateUrl: './admin-faqs-index.component.html',
-  styleUrls: ['./admin-faqs-index.component.scss']
+  selector: 'app-admin-faq-categories-index',
+  templateUrl: './admin-faq-categories-index.component.html',
+  styleUrls: ['./admin-faq-categories-index.component.scss']
 })
-export class AdminFaqsIndexComponent implements OnInit {
+export class AdminFaqCategoriesIndexComponent implements OnInit {
 
   @ViewChild(DataTableDirective)
   datatableElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
-  items: Array<Faq>;
+  items: Array<FaqCategory>;
   swal : any = sweetalert;
   token: Token;
   constructor(
     private router: Router,
     private store: Store<AppState>, 
     private http: HttpClient, 
-    private faqsService: FaqsService,
+    private faqsService: FaqsCategoriesService,
     private snotifyService: SnotifyService
   ) {
     this.store.select('token').subscribe((token: Token)=>{
@@ -57,7 +58,7 @@ export class AdminFaqsIndexComponent implements OnInit {
               })
             }
           ).subscribe((resp: any) => {
-            this.items = resp.data.map((data)=>{ return new Faq(data)});
+            this.items = resp.data.map((data)=>{ return new FaqCategory(data)});
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -65,13 +66,13 @@ export class AdminFaqsIndexComponent implements OnInit {
             });
           });
       },
-      columns: [{ data: 'id' }, { data: 'question' }, {data: 'id'} ]
+      columns: [{ data: 'id' }, {data: 'name'}, {data: 'id'} ]
     };
   }
 
   GoTo(value: string){
-    if (!value) return this.router.navigate(['/admin/faqs/create'])
-    return this.router.navigate(['/admin/faqs/' + value]);
+    if (!value) return this.router.navigate(['/admin/faqs-categories/create'])
+    return this.router.navigate(['/admin/faqs-categories/' + value]);
   }
 
 
@@ -82,7 +83,7 @@ export class AdminFaqsIndexComponent implements OnInit {
       buttons: [true, true],
     }).then((value)=>{
       if (!value) return;
-      this.snotifyService.async('Deleting Faq...', 
+      this.snotifyService.async('Deleting Faq Category...', 
         Observable.create(observer => {
           this.faqsService.delete(id).subscribe(()=>{
             this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -91,7 +92,7 @@ export class AdminFaqsIndexComponent implements OnInit {
               
             observer.next({
               title: 'Complete',
-              body: 'Faq Deleted!',
+              body: 'Faq Category Deleted!',
               config: {
                 closeOnClick: true,
                 timeout: 2000,
@@ -115,4 +116,5 @@ export class AdminFaqsIndexComponent implements OnInit {
       );
     });
   }
+
 }

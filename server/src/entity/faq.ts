@@ -22,7 +22,7 @@ export class Faq {
     
     @Column({
         type: 'text',
-        default: ''
+        nullable: true
     })
     answer: string = '';
 }

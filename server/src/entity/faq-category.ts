@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-@Entity({name: "news"})
-export class News {
+@Entity({name: "faq_categories"})
+export class FaqCategory {
     @PrimaryGeneratedColumn()
     id: number = 0;
     
@@ -9,11 +9,5 @@ export class News {
         length: 255,
         default: ''
     })
-    date: string = '';
-    
-    @Column({
-        type: 'text',
-        nullable: true
-    })
-    html: string = '';
+    name: string = '';
 }

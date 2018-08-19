@@ -66,7 +66,7 @@ export class AdminNewsIndexComponent implements OnInit {
             });
           });
       },
-      columns: [{ data: 'id' }, {data: 'id'} ]
+      columns: [{ data: 'id' }, { data: 'date' }, {data: 'id'} ]
     };
   }
 
