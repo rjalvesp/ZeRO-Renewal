@@ -6,7 +6,8 @@
   <div class="zr-box">
     <div *ngFor="let item of items">
       <div class="zr-box__article">
-        <h3 class="" [innerHtml]="item.html"></h3>
+        <h3 class="zr-box__article-title pb-2">{{item.date | localMoment}}</h3>
+        <div class="" [innerHtml]="item.html"></div>
       </div>
     </div>
   </div>
