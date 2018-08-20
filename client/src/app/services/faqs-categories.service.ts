@@ -19,7 +19,14 @@ export class FaqsCategoriesService {
   browse() {
     this.http.get<Array<FaqCategory>>(this.baseUrl, httpOptions)
       .subscribe((models: Array<FaqCategory>)=>{
+        console.log(models);
         this.collectionSubject.next(this.deserializeArray(models));
+      });
+  }
+  rxJsBrowse() {
+    return this.http.get<Array<FaqCategory>>(this.baseUrl, httpOptions)
+      .map((models: Array<FaqCategory>)=>{
+         return this.deserializeArray(models);
       });
   }
   get(id: number) : Observable<FaqCategory>{

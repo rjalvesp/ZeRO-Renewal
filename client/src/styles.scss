@@ -218,3 +218,21 @@ input {
         width: calc(100% - 30px) !important;
         padding: 20px;
   }
+
+  .zr-box {
+      
+    background-color: #5BA59E;
+    color: white;
+    border-radius: 5px;
+    width: calc(100% - 30px) !important;
+    padding: 20px;
+    .zr-box__article {
+        border-radius: 5px;
+        background-color: #42615e;
+        padding: 20px;
+        margin-bottom: 10px;
+        .zr-box__article-title {
+            font-weight: bold;
+        }
+    }
+  }

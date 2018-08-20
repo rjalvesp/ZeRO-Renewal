@@ -17,6 +17,7 @@ import { AdminFaqsIndexComponent } from '../components/content/admin-faqs-index/
 import { AdminFaqsFormComponent } from '../components/content/admin-faqs-form/admin-faqs-form.component';
 import { AdminFaqCategoriesIndexComponent } from '../components/content/admin-faq-categories-index/admin-faq-categories-index.component';
 import { AdminFaqCategoriesFormComponent } from '../components/content/admin-faq-categories-form/admin-faq-categories-form.component';
+import { FaqsComponent } from '../components/content/faqs/faqs.component';
 const appRoutes: Routes = [
   
   {
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
+      { path: 'faqs', component: FaqsComponent },
       { path: '**',  redirectTo: '' }
     ]
   }

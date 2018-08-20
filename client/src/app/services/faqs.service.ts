@@ -16,6 +16,13 @@ export class FaqsService {
   constructor(
     private http: HttpClient,
   ) { }
+  
+  rxJsBrowse() {
+    return this.http.get<Array<Faq>>(this.baseUrl, httpOptions)
+      .map((models: Array<Faq>)=>{
+         return this.deserializeArray(models);
+      });
+  }
   browse() {
     this.http.get<Array<Faq>>(this.baseUrl, httpOptions)
       .subscribe((models: Array<Faq>)=>{

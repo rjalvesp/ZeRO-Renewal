@@ -1,0 +1,15 @@
+<div class="zr-container">
+  <div class="zr-title text-center mb-3">
+      <p>Ragnarok Zero</p>
+      <p>Renewal</p>
+  </div>
+  <div class="zr-box">
+    <div class="zr-box__article" *ngFor="let item of items">
+      <h3 class="zr-box__article-title pb-2">{{item.name}}</h3>
+      <div class="pb-1" *ngFor="let faq of item.faqs; let idx = index">
+        <strong>{{idx + 1}} - {{faq.question}}</strong>
+        <div class="pl-4">{{faq.answer}}</div>
+      </div>
+    </div>
+  </div>
+</div>

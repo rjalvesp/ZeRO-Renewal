@@ -8,6 +8,7 @@ export class NewsController {
         webConnection.createQueryBuilder()
             .select("row")
             .from(News, "row")
+            .orderBy('row.date', 'DESC')
             .getMany()
             .then((result: Array<any>)=>{
                 res.status(200).json(result);
@@ -63,7 +64,7 @@ export class NewsController {
         let webConnection = await WebConnection;
         let item = new News();
         item.html = req.body.html;
-        item.date = moment().format('YYYY-MM-DD HH:mm:ss');
+        item.date = moment().format('YYYY-MM-DD HH:mm:ss Z');
         webConnection.manager.save(item)
             .then((newItem: any) => {
                 res.status(201).json(newItem? newItem : {});
