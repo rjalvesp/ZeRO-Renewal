@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { AppState } from '../../../store/states/state';
@@ -12,12 +13,14 @@ import { User } from '../../../models/user.model';
 export class ProfileComponent implements OnInit {
 
   user: User;
-  constructor(private store: Store<AppState>, private usersService: UsersService) { }
+  constructor(private store: Store<AppState>, private usersService: UsersService, private router: Router) { }
 
   ngOnInit() {
     this.store.select('user').subscribe((user: User)=>{
       this.user = user;
     })
   }
-
+  GoToAdmin(){
+    this.router.navigate(['/admin']);
+  }
 }

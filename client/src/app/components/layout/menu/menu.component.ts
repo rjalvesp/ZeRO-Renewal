@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit {
     new MenuItem('fas fa-download', 'downloads', '/downloads', MenuConditional.default),
     new MenuItem('fas fa-donate', 'donate', '/donate', MenuConditional.default),
     new MenuItem('fas fa-question', 'faqs', '/faqs', MenuConditional.default),
+    new MenuItem('fas fa-sign-out-alt', 'sign out', '/sign-out', MenuConditional.logged),
   ];
   selected: MenuItem = this.items[0];
   user: User;

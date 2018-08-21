@@ -16,6 +16,8 @@ export class User {
     salt: string = '';
     @Column()
     dob: string = '';
+    @Column()
+    admin: boolean = false;
 
     constructor(){
     }

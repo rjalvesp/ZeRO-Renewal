@@ -17,6 +17,7 @@ export class AdminMenuComponent implements OnInit {
     new MenuItem('fas fa-newspaper', 'news', '/admin/news', MenuConditional.default),
     new MenuItem('fas fa-question', 'faqs', '/admin/faqs', MenuConditional.default),
     new MenuItem('far fa-question-circle', 'faq categories', '/admin/faqs-categories', MenuConditional.default),
+    new MenuItem('fas fa-sign-out-alt', 'sign out', '/sign-out', MenuConditional.logged),
   ];
   selected: MenuItem = this.items[0];
   user: User;

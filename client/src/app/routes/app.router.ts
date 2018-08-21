@@ -1,3 +1,4 @@
+import { SignOutComponent } from './../components/content/sign-out/sign-out.component';
 import { AdminComponent } from './../components/modules/admin/admin.component';
 import { BasicComponent } from './../components/modules/basic/basic.component';
 import { SignUpComponent } from './../components/content/sign-up/sign-up.component';
@@ -18,12 +19,13 @@ import { AdminFaqsFormComponent } from '../components/content/admin-faqs-form/ad
 import { AdminFaqCategoriesIndexComponent } from '../components/content/admin-faq-categories-index/admin-faq-categories-index.component';
 import { AdminFaqCategoriesFormComponent } from '../components/content/admin-faq-categories-form/admin-faq-categories-form.component';
 import { FaqsComponent } from '../components/content/faqs/faqs.component';
+import { AdminGuard } from '../guards/admin.guard';
 const appRoutes: Routes = [
   
   {
     path: 'admin', 
     component: AdminComponent,
-    
+    canActivate: [AdminGuard],
     children: [
       { path: 'news', component: AdminNewsIndexComponent },
       { path: 'news/create', component: AdminNewsFormComponent },
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
+      { path: 'sign-out', component: SignOutComponent },
       { path: 'faqs', component: FaqsComponent },
       { path: '**',  redirectTo: '' }
     ]

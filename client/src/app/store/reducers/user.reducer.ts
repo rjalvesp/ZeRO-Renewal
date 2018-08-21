@@ -7,7 +7,9 @@ export function  UserReducer(state: User = new User({}), action: UserActions) {
             window.localStorage.setItem('user', JSON.stringify(state));
             return state;
         default:
-            state = new User(JSON.parse(window.localStorage.getItem('user')));
+        
+            let stored = JSON.parse(window.localStorage.getItem('user'));
+            state = new User(stored? stored : {});
             return state;
     }
 };

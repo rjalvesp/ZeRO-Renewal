@@ -48,6 +48,7 @@ import { AdminFaqCategoriesFormComponent } from './components/content/admin-faq-
 import { FaqsCategoriesService } from './services/faqs-categories.service';
 import { LocalMomentPipe } from './pipes/local-moment.pipe';
 import { FaqsComponent } from './components/content/faqs/faqs.component';
+import { SignOutComponent } from './components/content/sign-out/sign-out.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { FaqsComponent } from './components/content/faqs/faqs.component';
     AdminFaqCategoriesIndexComponent,
     AdminFaqCategoriesFormComponent,
     LocalMomentPipe,
-    FaqsComponent
+    FaqsComponent,
+    SignOutComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,15 @@ export class User {
     confirmPassword: string;
     dob: string;
     captcha: string;
+    admin: boolean;
     public get json() : any {
         return {
             username : this.username,
             email : this.email,
             password : this.password,
             confirmPassword : this.confirmPassword,
-            dob : this.dob
+            dob : this.dob,
+            admin: this.admin
         }
     }
     constructor(cfg: any) {
@@ -21,5 +23,6 @@ export class User {
         this.confirmPassword = cfg.confirmPassword;
         this.dob = cfg.dob;
         this.captcha = cfg.captcha;
+        this.admin = cfg.admin;
     }
 }

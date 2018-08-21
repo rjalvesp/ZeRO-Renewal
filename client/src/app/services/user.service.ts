@@ -11,15 +11,14 @@ import { User } from '../models/user.model';
 @Injectable()
 export class UsersService {
   url : string = '/api/v1/users';
+  user: User = new User({});
   constructor(private http: HttpClient, private router : Router, private store: Store<AppState>) {
   }
 
   me() {
     this.http.get<any>(`${this.url}/me`).subscribe((response: User)=>{
-      let user = new User(response);
-      console.log(1);
-      this.store.dispatch(new UsersActions.Store(user));
-      console.log(2);
+      this.user = new User(response);
+      this.store.dispatch(new UsersActions.Store(this.user));
     });
   }
 

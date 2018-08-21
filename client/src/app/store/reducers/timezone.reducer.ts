@@ -7,7 +7,8 @@ export function TimezoneReducer(state: number = 0, action: TimezoneActions.Actio
             window.localStorage.setItem('timezone', state.toString());
             return state;
         default:
-            state = parseInt(window.localStorage.getItem('timezone').toString(), 10);
+            let stored = window.localStorage.getItem('timezone');
+            state = parseInt(stored? stored.toString() : '0', 10);
             return state;
     }
 };

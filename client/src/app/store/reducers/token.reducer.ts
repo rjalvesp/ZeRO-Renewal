@@ -7,7 +7,8 @@ export function  TokenReducer(state: Token = new Token({}), action: TokenActions
             window.localStorage.setItem('token', JSON.stringify(state));
             return state;
         default:
-            state = new Token(JSON.parse(window.localStorage.getItem('token')));
+            let stored = JSON.parse(window.localStorage.getItem('token'));
+            state = new Token(stored? stored : {});
             return state;
     }
 };
