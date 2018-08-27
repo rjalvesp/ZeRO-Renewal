@@ -1,11 +1,11 @@
-import { WebConnection } from "./connection";
+import { DBConnections } from "./connection";
 import { Token } from "../src/entity/token";
 import { User } from "../src/entity/user";
 
 export class Authorization {
     static async Guard(req: any, res: any, next: any) {
         let bearer = (req.headers['authorization'] as string).replace('Bearer ', '');
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         
         webConnection.createQueryBuilder()
             .select("token")
@@ -19,7 +19,7 @@ export class Authorization {
                     .from(User, "user")
                     .where("user.id = :id", { id: token.id_user })
                     .getOne()
-                    .then((user) => {
+                    .then((user: User) => {
                         req.user = user;
                         return next();
                     })
@@ -30,5 +30,9 @@ export class Authorization {
             .catch((error: any)=>{
                 res.status(500).json(error);
             });
+    };
+    static async AdminGuard(req: any, res: any, next: any) {
+        if (!req.user.admin) return res.status(401).json({reason: 'You are not admin'})
+        return next();
     };
 }

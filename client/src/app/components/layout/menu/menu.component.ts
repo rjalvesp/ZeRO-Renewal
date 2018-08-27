@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
     new MenuItem('fas fa-home', 'home', '/', MenuConditional.default),
     new MenuItem('fas fas fa-newspaper', 'news', '/news', MenuConditional.default),
     new MenuItem('fas fa-info-circle', 'info', '/info', MenuConditional.default),
+    new MenuItem('fas fa-database', 'database', '/database', MenuConditional.default),
     new MenuItem('fab fa-discord', 'discord', '/discord', MenuConditional.default),
     new MenuItem('fas fa-user-plus', 'sign up', '/sign-up', MenuConditional.unlogged),
     new MenuItem('fas fa-sign-in-alt', 'sign in', '/sign-in', MenuConditional.unlogged),
@@ -24,7 +25,7 @@ export class MenuComponent implements OnInit {
     new MenuItem('fas fa-download', 'downloads', '/downloads', MenuConditional.default),
     new MenuItem('fas fa-donate', 'donate', '/donate', MenuConditional.default),
     new MenuItem('fas fa-question', 'faqs', '/faqs', MenuConditional.default),
-    new MenuItem('fas fa-sign-out-alt', 'sign out', '/sign-out', MenuConditional.logged),
+    new MenuItem('fas fa-sign-out-alt', 'sign out', '/sign-out', MenuConditional.logged)
   ];
   selected: MenuItem = this.items[0];
   user: User;
@@ -49,7 +50,8 @@ export class MenuComponent implements OnInit {
   }
   load(url: string) {
     this.selected = this.items.find((i: MenuItem)=>{
-      return i.url === url;
+      let route = url.split('/');
+      return i.url === route.slice(0, 2).join('/');
     })
   }
 

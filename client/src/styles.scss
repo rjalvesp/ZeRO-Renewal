@@ -175,6 +175,7 @@ input {
     padding:  10px 0px;
     border-radius: 5px;
     border: 1px solid #f0f0f0;
+    color: #777777;
     width: 100% !important;
     table {
       padding: 0px 10px;
@@ -232,8 +233,22 @@ input {
         background-color: #42615e;
         padding: 20px;
         margin-bottom: 10px;
+        &.zr-box__article--tabs {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            margin-bottom: 0px;
+            padding: 10px;
+        }
+        &.zr-box__article--tabs-content {
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
         .zr-box__article-title {
             font-weight: bold;
         }
     }
+  }
+
+  .d-flex-fill {
+    flex: 1 1 auto;
   }

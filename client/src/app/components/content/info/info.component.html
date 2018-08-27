@@ -4,9 +4,26 @@
         <p>Renewal</p>
     </div>
     <div class="zr-box">
-      <div class="zr-box__article">
+      <div class="d-flex d-flex-fill zr-box__article zr-box__article--tabs">
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'server'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'server'}">
+            Servidor
+          </p>
+        </div>
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'npcs'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'npcs'}">
+            NPCs
+          </p>
+        </div>
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'rules'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'rules'}">
+            Reglas
+          </p>
+        </div>
+      </div>
+      <div class="zr-box__article zr-box__article--tabs-content">
         <div class="zr-box__article-title pb-2"></div>
-        <div></div>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

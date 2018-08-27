@@ -1,9 +1,9 @@
 import { FaqCategory } from './../../src/entity/faq-category';
-import { WebConnection } from '../../classes/connection';
+import { DBConnections } from '../../classes/connection';
 const _ = require('lodash');
 export class FaqsCategoriesController {
     static async index(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(FaqCategory, "row")
@@ -16,7 +16,7 @@ export class FaqsCategoriesController {
             })
     }
     static async datatables(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(FaqCategory, "row")
@@ -45,7 +45,7 @@ export class FaqsCategoriesController {
             })
     }
     static async get(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(FaqCategory, "row")
@@ -59,7 +59,7 @@ export class FaqsCategoriesController {
             });
     }
     static async add(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         let item = new FaqCategory();
         item.name = req.body.name;
         webConnection.manager.save(item)
@@ -72,7 +72,7 @@ export class FaqsCategoriesController {
     }
     static async edit(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(FaqCategory, "row")
@@ -94,7 +94,7 @@ export class FaqsCategoriesController {
     }
     static async delete(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .delete()
             .from(FaqCategory)

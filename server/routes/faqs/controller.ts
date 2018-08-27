@@ -1,9 +1,9 @@
 import { Faq } from './../../src/entity/faq';
-import { WebConnection } from '../../classes/connection';
+import { DBConnections } from '../../classes/connection';
 const _ = require('lodash');
 export class FaqsController {
     static async index(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(Faq, "row")
@@ -16,7 +16,7 @@ export class FaqsController {
             })
     }
     static async datatables(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(Faq, "row")
@@ -45,7 +45,7 @@ export class FaqsController {
             })
     }
     static async get(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(Faq, "row")
@@ -59,7 +59,7 @@ export class FaqsController {
             });
     }
     static async add(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         let item = new Faq();
         item.id_category = req.body.id_category;
         item.question = req.body.question;
@@ -74,7 +74,7 @@ export class FaqsController {
     }
     static async edit(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(Faq, "row")
@@ -98,7 +98,7 @@ export class FaqsController {
     }
     static async delete(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .delete()
             .from(Faq)

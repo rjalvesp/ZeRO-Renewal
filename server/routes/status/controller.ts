@@ -1,6 +1,6 @@
+import { DBConnections } from './../../classes/connection';
 import { ServerInfo } from './../../src/entity/server-info';
 import { Characters } from "../../classes/characters";
-import { RAthenaConnection } from '../../classes/connection';
 var moment = require('moment');
 export class CharactersController {
     static online(req: any, res: any) {
@@ -9,7 +9,7 @@ export class CharactersController {
             .catch((err: any)=>{ res.status(200).json(0); });
     }
     static info(req: any, res: any) {
-        RAthenaConnection
+        DBConnections.RAthenaConnection
             .then((connection)=>{
                 let serverInfoRespository = connection.getRepository(ServerInfo);
                 serverInfoRespository.findOne()

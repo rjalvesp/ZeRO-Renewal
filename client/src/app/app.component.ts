@@ -11,10 +11,12 @@ export class AppComponent {
   title = 'app';
   constructor(private statusService: StatusService){
     this.statusService.timezone().subscribe(()=>{});
-    this.statusService.info().subscribe(()=>{});
     
     timer(0,30000).subscribe(()=>{
       this.statusService.online().subscribe(()=>{});
+    })
+    timer(0,30000).subscribe(()=>{
+      this.statusService.info().subscribe(()=>{});
     })
   }
 }

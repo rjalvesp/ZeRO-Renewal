@@ -43,7 +43,6 @@ export class AdminMenuComponent implements OnInit {
   load(url: string) {
     this.selected = this.items.find((i: MenuItem)=>{
       let route = url.split('/');
-      console.log(route.slice(0, 3).join('/'));
       return i.url === route.slice(0, 3).join('/');
     })
   }

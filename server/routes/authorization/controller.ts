@@ -1,5 +1,5 @@
 
-import { WebConnection } from './../../classes/connection';
+import { DBConnections } from './../../classes/connection';
 import { User } from "../../src/entity/user";
 import { Crypto } from "../../classes/crypto";
 import { Token } from '../../src/entity/token';
@@ -9,7 +9,7 @@ var _ = require('lodash');
 export class AuthorizationController {
     static async login(req: any, res: any){
          
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         let username: string = req.body.username;
         let password = req.body.password;
         webConnection.createQueryBuilder()
@@ -27,7 +27,7 @@ export class AuthorizationController {
                 token.id_user = value.id;
                 token.created_at = moment().format();
                 webConnection.manager.save(token)
-                    .then((newToken) => {
+                    .then((newToken: Token) => {
                         res.status(201).json(newToken? newToken : {});
                     })
                     .catch((error: any)=>{

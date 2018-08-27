@@ -49,6 +49,17 @@ import { FaqsCategoriesService } from './services/faqs-categories.service';
 import { LocalMomentPipe } from './pipes/local-moment.pipe';
 import { FaqsComponent } from './components/content/faqs/faqs.component';
 import { SignOutComponent } from './components/content/sign-out/sign-out.component';
+import { ServerComponent } from './components/content/info/server/server.component';
+import { NpcsComponent } from './components/content/info/npcs/npcs.component';
+import { RulesComponent } from './components/content/info/rules/rules.component';
+import { RankingsComponent } from './components/content/info/rankings/rankings.component';
+import { ForgotPasswordComponent } from './components/content/forgot-password/forgot-password.component';
+import { DefaultComponent } from './components/modules/default/default.component';
+import { RecoverPasswordComponent } from './components/content/recover-password/recover-password.component';
+import { DatabaseComponent } from './components/content/database/database.component';
+import { PlayersComponent } from './components/content/database/players/players.component';
+import { CardsComponent } from './components/content/database/cards/cards.component';
+import { CharactersService } from './services/character.service';
 
 
 @NgModule({
@@ -76,7 +87,17 @@ import { SignOutComponent } from './components/content/sign-out/sign-out.compone
     AdminFaqCategoriesFormComponent,
     LocalMomentPipe,
     FaqsComponent,
-    SignOutComponent
+    SignOutComponent,
+    ServerComponent,
+    NpcsComponent,
+    RulesComponent,
+    RankingsComponent,
+    ForgotPasswordComponent,
+    DefaultComponent,
+    RecoverPasswordComponent,
+    DatabaseComponent,
+    PlayersComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +128,8 @@ import { SignOutComponent } from './components/content/sign-out/sign-out.compone
     UsersService,
     FaqsService,
     FaqsCategoriesService,
-    NewsService
+    NewsService,
+    CharactersService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,29 @@
+<div class="zr-container">
+    <div class="zr-title text-center mb-3">
+        <p>Ragnarok Zero</p>
+        <p>Renewal</p>
+    </div>
+    <div class="zr-box">
+      <div class="d-flex d-flex-fill zr-box__article zr-box__article--tabs">
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'server'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'server'}">
+            General
+          </p>
+        </div>
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'players'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'players'}">
+            Jugadores
+          </p>
+        </div>
+        <div class="d-flex-fill text-center">
+          <p [routerLink]="'rules'" class="zr-link" [ngClass]="{'font-weight-bold': activeRoute === 'rules'}">
+            Cartas
+          </p>
+        </div>
+      </div>
+      <div class="zr-box__article zr-box__article--tabs-content">
+        <div class="zr-box__article-title pb-2"></div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>

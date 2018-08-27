@@ -1,10 +1,10 @@
 import { News } from './../../src/entity/news';
-import { WebConnection } from '../../classes/connection';
+import { DBConnections } from '../../classes/connection';
 const _ = require('lodash');
 const moment = require('moment');
 export class NewsController {
     static async index(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(News, "row")
@@ -18,7 +18,7 @@ export class NewsController {
             })
     }
     static async datatables(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(News, "row")
@@ -47,7 +47,7 @@ export class NewsController {
             })
     }
     static async get(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(News, "row")
@@ -61,7 +61,7 @@ export class NewsController {
             });
     }
     static async add(req: any, res: any){
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         let item = new News();
         item.html = req.body.html;
         item.date = moment().format('YYYY-MM-DD HH:mm:ss Z');
@@ -75,7 +75,7 @@ export class NewsController {
     }
     static async edit(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .select("row")
             .from(News, "row")
@@ -97,7 +97,7 @@ export class NewsController {
     }
     static async delete(req: any, res: any){
         
-        let webConnection = await WebConnection;
+        let webConnection = await DBConnections.WebConnection;
         webConnection.createQueryBuilder()
             .delete()
             .from(News)

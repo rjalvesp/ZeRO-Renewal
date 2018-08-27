@@ -1,3 +1,7 @@
+import { DatabaseComponent } from './../components/content/database/database.component';
+import { ForgotPasswordComponent } from './../components/content/forgot-password/forgot-password.component';
+import { RankingsComponent } from './../components/content/info/rankings/rankings.component';
+import { RulesComponent } from './../components/content/info/rules/rules.component';
 import { SignOutComponent } from './../components/content/sign-out/sign-out.component';
 import { AdminComponent } from './../components/modules/admin/admin.component';
 import { BasicComponent } from './../components/modules/basic/basic.component';
@@ -20,6 +24,11 @@ import { AdminFaqCategoriesIndexComponent } from '../components/content/admin-fa
 import { AdminFaqCategoriesFormComponent } from '../components/content/admin-faq-categories-form/admin-faq-categories-form.component';
 import { FaqsComponent } from '../components/content/faqs/faqs.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { ServerComponent } from '../components/content/info/server/server.component';
+import { NpcsComponent } from '../components/content/info/npcs/npcs.component';
+import { DefaultComponent } from '../components/modules/default/default.component';
+import { RecoverPasswordComponent } from '../components/content/recover-password/recover-password.component';
+import { PlayersComponent } from '../components/content/database/players/players.component';
 const appRoutes: Routes = [
   
   {
@@ -38,12 +47,37 @@ const appRoutes: Routes = [
       { path: 'faqs-categories/:id', component: AdminFaqCategoriesFormComponent }
     ]
   },
+  {
+    path: 'default', 
+    component: DefaultComponent,
+    children: [
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'recover-password', component: RecoverPasswordComponent }
+    ]
+  },
   { 
     path: '', 
     component: BasicComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'info', component: InfoComponent },
+      { 
+        path: 'info', 
+        component: InfoComponent,
+        children: [
+          { path: '', component: ServerComponent },
+          { path: 'server', component: ServerComponent },
+          { path: 'npcs', component: NpcsComponent },
+          { path: 'rules', component: RulesComponent },
+          { path: 'rankings', component: RankingsComponent },
+        ]
+      },
+      { 
+        path: 'database', 
+        component: DatabaseComponent,
+        children: [
+          { path: 'players', component: PlayersComponent },
+        ]
+      },
       { path: 'discord', component: DiscordComponent },
       { path: 'donate', component: DonateComponent },
       { path: 'downloads', component: DownloadsComponent },

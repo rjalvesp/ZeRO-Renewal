@@ -1,8 +1,9 @@
+import { RecoverPassword } from './../../src/entity/recover-password';
 import { Login } from './../../src/entity/login';
 import { User } from './../../src/entity/user';
-import { RAthenaConnection, WebConnection } from './../../classes/connection';
 import { Crypto } from '../../classes/crypto';
 import { Character } from '../../src/entity/character';
+import { DBConnections } from '../../classes/connection';
 var _ = require('lodash');
 var moment = require('moment');
 export class UsersController {
@@ -35,9 +36,8 @@ export class UsersController {
     // }
     static async add(req: any, res: any){
         
-        let rathenaConnection = await RAthenaConnection;
-        let webConnection = await WebConnection;
-        console.log('1111111111111')
+        let rathenaConnection = await DBConnections.RAthenaConnection;
+        let webConnection = await DBConnections.WebConnection;
         let user: User = new User();
         user.email = req.body.email;
         user.username = req.body.username;
@@ -45,13 +45,9 @@ export class UsersController {
         
         user.salt = Crypto.generateSalt(16);
         user.password = Crypto.generatePassword(password, user.salt);
-        console.log('--------')
         webConnection.manager.save(user)
-        .then(newUser => {
-            
-            console.log('+++++++++++')
+        .then((newUser: User) => {
                 let login: Login = new Login();
-
                 login.userid = newUser.username;
                 login.user_pass = password;
                 login.email = user.email;
@@ -72,15 +68,13 @@ export class UsersController {
             });
     }
     static async me(req: any, res: any){
-        let connection = await RAthenaConnection;
-        console.log('----------')
+        let connection = await DBConnections.RAthenaConnection;
         connection.createQueryBuilder()
         .select("login")
         .from(Login, "login")
         .where("login.email = :email", { email: req.user.email })
         .getOne()
         .then(async (value: any)=>{
-            console.log('+++++++++++')
             let login : Login = <Login>value;
             
                 let charRepository = await connection.getRepository(Character);
@@ -90,6 +84,59 @@ export class UsersController {
             .catch((error: any)=>{
                 res.status(500).json(error);
             });
+    }
+    static async forgot(req: any, res: any){
+        let connection = await DBConnections.WebConnection;
+        connection.createQueryBuilder()
+        .select("user")
+        .from(User, "user")
+        .where("user.email = :text or user.username = :text", { text: req.body.username })
+        .getOne()
+        .then(async (value: any)=>{
+            console.log(value);
+            if (!value) return res.status(404).json({ok: false});
+            let recoverPassword = new RecoverPassword();
+            recoverPassword.id_user = value.id;
+            recoverPassword.consumed = false;
+            recoverPassword.datetime = moment().format();
+            recoverPassword.encoded = Crypto.generatePassword(recoverPassword.datetime, Crypto.generateSalt(16));
+            connection.manager.save(recoverPassword)
+                .then((newUser: User) => { res.status(200).json({ok: true}); })
+                .catch((error: any)=>{ res.status(500).json(error); });
+        })
+        .catch((error: any)=>{ res.status(500).json(error); });
+    }
+    static async newPassword(req: any, res: any){
+        let connection = await DBConnections.WebConnection;
+        let recoverPassword = await connection.createQueryBuilder()
+            .select("recover_passwords")
+            .from(RecoverPassword, "recover_passwords")
+            .where("recover_passwords.encoded = :text", { text: req.body.encoded })
+            .getOne();
+        if (!recoverPassword) return res.status(404).json({ok: false});
+        let thatMoment = moment(recoverPassword.datetime);
+        let thisMoment = moment();
+        recoverPassword.consumed = true;
+        await connection.manager.save(recoverPassword);
+        if (thisMoment.subtract(1, 'd').isAfter(thatMoment)) return res.status(409).json({ok: false, reason: 'Request expired'});
+        let user : User = await connection.createQueryBuilder()
+            .select("user")
+            .from(User, "user")
+            .where("user.id = :id", { id: recoverPassword.id_user })
+            .getOne();
+        let password = req.body.password;
+        user.salt = Crypto.generateSalt(16);
+        user.password = Crypto.generatePassword(password, user.salt);
+        await connection.manager.save(user);
+        let rathenaConnection = await DBConnections.RAthenaConnection;
+        let login : Login = await rathenaConnection.createQueryBuilder()
+            .select("login")
+            .from(Login, "login")
+            .where("login.email = :email", { email: user.email })
+            .getOne()
+        login.user_pass = password;
+        await rathenaConnection.manager.save(login);
+        res.status(200).json({ok: true}); 
     }
     // static delete = (req: any, res: any)=> {
         

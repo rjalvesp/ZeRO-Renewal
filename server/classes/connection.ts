@@ -9,35 +9,41 @@ import { Token } from "../src/entity/token";
 import { News } from "../src/entity/news";
 import { Faq } from "../src/entity/faq";
 import { FaqCategory } from "../src/entity/faq-category";
-export const RAthenaConnection = createConnection({
-    type: "mysql",
-    host: "127.0.0.1",
-    port: 3306,
-    username: "root",
-    password: "ram10110.S1",
-    database: "rathena",
-    entities: [
-        Character,
-        ServerInfo,
-        Login
-    ],
-    synchronize: false,
-    logging: false
-})
-export const WebConnection = createConnection({
-    type: "mysql",
-    host: "127.0.0.1",
-    port: 3306,
-    username: "web",
-    password: "qwe123.S1",
-    database: "web",
-    entities: [
-        User,
-        Token,
-        News,
-        Faq,
-        FaqCategory
-    ],
-    synchronize: true,
-    logging: false
-})
+import { RecoverPassword } from "../src/entity/recover-password";
+export class DBConnections {
+    static RAthenaConnection : Promise<any> = createConnection({
+        name: 'rathena',
+        type: "mysql",
+        host: "127.0.0.1",
+        port: 3306,
+        username: "root",
+        password: "ram10110.S1",
+        database: "rathena",
+        entities: [
+            Character,
+            ServerInfo,
+            Login
+        ],
+        synchronize: false,
+        logging: false
+    })
+    static WebConnection : Promise<any> = createConnection({
+        name: 'web',
+        type: "mysql",
+        host: "127.0.0.1",
+        port: 3306,
+        username: "web",
+        password: "qwe123.S1",
+        database: "web",
+        entities: [
+            User,
+            Token,
+            News,
+            Faq,
+            FaqCategory,
+            RecoverPassword
+        ],
+        synchronize: true,
+        logging: false
+    })
+}

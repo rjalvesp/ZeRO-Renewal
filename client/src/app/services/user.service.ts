@@ -27,5 +27,10 @@ export class UsersService {
       return new User(response);
     });
   }
-
+  forgotPassword(model: any) : Observable<any> {
+    return this.http.post<any>(`${this.url}/forgot-password`, model);
+  }
+  recoverPassword(model: any) : Observable<any> {
+    return this.http.post<any>(`${this.url}/recover-password`, model);
+  }
 }
