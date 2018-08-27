@@ -27,15 +27,15 @@ export class DatabaseGeneralComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.snotifyService.async('Fetching Info...', 
+    this.snotifyService.async('Fetching Data...', 
         Observable.create(observer => {
           this.charactersService.dashboard().subscribe((response: any)=>{
             this.dashboard = response;
             console.log(response);
             console.log(this.dashboard);
             observer.next({
-              title: 'Complete',
-              body: 'News Deleted!',
+              title: 'Completed',
+              body: 'Data Fetched',
               config: {
                 closeOnClick: true,
                 timeout: 2000,

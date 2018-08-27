@@ -34,7 +34,7 @@ export class BasicComponent implements OnInit {
   ngOnInit() {
     timer(0,1000).subscribe(()=>{
       if (this.zone) this.loaded = true;
-      this.serverTime = Moment().zone(this.zone).format('MMM D, HH:mm:ss');
+      this.serverTime = Moment().utcOffset(this.zone).format('MMM D, HH:mm:ss');
     })
   }
 }
