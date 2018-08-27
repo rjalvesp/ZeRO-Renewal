@@ -1,8 +1,8 @@
+import { JobClass } from './../../../../../../../server/classes/class';
 import { CharactersService } from './../../../../services/character.service';
 import { HttpClient } from '@angular/common/http';
 import { DataTableDirective } from 'angular-datatables';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { JobClass } from '../../../../models/class';
 import { JobClassCollection } from '../../../../models/class-collection';
 import { DataTableResponse } from '../../../../models/data-table-response.model';
 
@@ -38,8 +38,11 @@ export class PlayersComponent implements OnInit {
             this.charactersService.urlViewsClass + '/' + this.selectedItem,
             dataTablesParameters
           ).subscribe((resp: any) => {
-            this.items = resp.data;
-            console.log(resp.data);
+            this.items = resp.data.map((item: any)=>{
+                item.className = this.classes.find((jobClass: JobClass)=>{ return jobClass.id === item.class;}).name;
+                return item;
+            });
+            console.log(this.items);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -47,8 +50,12 @@ export class PlayersComponent implements OnInit {
             });
           });
       },
-      columns: [{ data: 'name' }, { data: 'base_level' }, {data: 'job_level'}, {data: 'sex'} ]
+      columns: [{ data: 'name' }, { data: 'class' }, { data: 'base_level' }, {data: 'job_level'}, {data: 'sex'} ]
     };
   }
-
+  onChange() {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.ajax.reload();
+    });
+  }
 }

@@ -46,7 +46,7 @@ export class CharsController {
             query.getRawOne()
                 .then((value: any)=>{
                     result = result.map((char: Character)=>{
-                        return _.pick(char, ['name', 'base_level', 'job_level', 'base_exp', 'job_exp', 'sex']);
+                        return _.pick(char, ['name', 'base_level', 'job_level', 'base_exp', 'job_exp', 'class', 'sex']);
                     });
                     res.status(200).json({
                         recordsTotal: parseInt(_.get(value, 'count', 0).toString()),
