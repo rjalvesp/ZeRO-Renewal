@@ -1,3 +1,4 @@
+import { DatabaseGeneralComponent } from './../components/content/database/database-general/database-general.component';
 import { DatabaseComponent } from './../components/content/database/database.component';
 import { ForgotPasswordComponent } from './../components/content/forgot-password/forgot-password.component';
 import { RankingsComponent } from './../components/content/info/rankings/rankings.component';
@@ -75,6 +76,8 @@ const appRoutes: Routes = [
         path: 'database', 
         component: DatabaseComponent,
         children: [
+          { path: '', component: DatabaseGeneralComponent },
+          { path: 'general', component: DatabaseGeneralComponent },
           { path: 'players', component: PlayersComponent },
         ]
       },

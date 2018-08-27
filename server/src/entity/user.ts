@@ -17,6 +17,8 @@ export class User {
     @Column()
     dob: string = '';
     @Column()
+    sex: string = '';
+    @Column()
     admin: boolean = false;
 
     constructor(){

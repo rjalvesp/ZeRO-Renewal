@@ -1,0 +1,50 @@
+<div *ngIf="dashboard.average" class="pl-3 pr-3">
+    <h3> Datos Generales </h3>
+    <div class="row text-center p-3 mb-2 bg-light text-dark">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Cuentas: {{dashboard.accounts}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Personajes: {{dashboard.characters}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Zeny Total: {{dashboard.zeny}}</div>
+    </div>
+    <div class="row text-center p-3 mb-2 bg-light text-dark">
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Guilds: {{dashboard.guilds}}</div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Personajes en Guilds: {{dashboard.guildMembers}}</div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Castillos Capturados: {{dashboard.capturedCastles}}</div>
+    </div>
+    <div class="row text-center p-3 mb-2 bg-light text-dark">
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Tiendas: {{dashboard.stores}}</div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Items en Tiendas: {{dashboard.storeItems}}</div>
+    </div>
+    <h3> Promedios de personajes </h3>
+    <div class="row text-center p-3 mb-2 bg-light text-dark">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Por Cuentas: {{dashboard.average.charsAccount}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">En Linea: {{dashboard.average.online}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Por Guilds: {{dashboard.average.guildMembers}}</div>
+    </div>
+    <h3> Promedios de Comercio </h3>
+    <div class="row text-center p-3 mb-2 bg-light text-dark">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Zeny/Personajes: {{dashboard.average.zenyAccount}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Zeny/Cuentas: {{dashboard.average.zenyChars}}</div>
+      <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4">Items/Tienda: {{dashboard.average.itemsStore}}</div>
+    </div>
+    <h3> Clases </h3>
+    
+    <div class="col pb-5">
+      <table datatable [dtOptions]="dtOptions" class="row-border hover text-black">
+        <thead>
+          <tr>
+            <th>Clase</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{ item.name }}</td>
+            <td class="text-center">{{ item.total }}</td>
+          </tr>
+          <tr *ngIf="items?.length === 0">
+            <td colspan="5">No Records</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

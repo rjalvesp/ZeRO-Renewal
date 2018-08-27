@@ -1,3 +1,4 @@
+import { GuildMember } from './../src/entity/guild-member';
 
 import "reflect-metadata";
 import {createConnection} from "typeorm";
@@ -10,6 +11,10 @@ import { News } from "../src/entity/news";
 import { Faq } from "../src/entity/faq";
 import { FaqCategory } from "../src/entity/faq-category";
 import { RecoverPassword } from "../src/entity/recover-password";
+import { Guild } from "../src/entity/guild";
+import { GuildCastle } from "../src/entity/guild-castle";
+import { Vending } from "../src/entity/vending";
+import { VendingItem } from '../src/entity/vending-item';
 export class DBConnections {
     static RAthenaConnection : Promise<any> = createConnection({
         name: 'rathena',
@@ -22,7 +27,12 @@ export class DBConnections {
         entities: [
             Character,
             ServerInfo,
-            Login
+            Login,
+            Guild,
+            GuildCastle,
+            GuildMember,
+            Vending,
+            VendingItem
         ],
         synchronize: false,
         logging: false

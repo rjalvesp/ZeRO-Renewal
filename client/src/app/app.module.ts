@@ -60,6 +60,7 @@ import { DatabaseComponent } from './components/content/database/database.compon
 import { PlayersComponent } from './components/content/database/players/players.component';
 import { CardsComponent } from './components/content/database/cards/cards.component';
 import { CharactersService } from './services/character.service';
+import { DatabaseGeneralComponent } from './components/content/database/database-general/database-general.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { CharactersService } from './services/character.service';
     RecoverPasswordComponent,
     DatabaseComponent,
     PlayersComponent,
-    CardsComponent
+    CardsComponent,
+    DatabaseGeneralComponent
   ],
   imports: [
     BrowserModule,

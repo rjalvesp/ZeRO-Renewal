@@ -5,6 +5,7 @@ export class User {
     confirmPassword: string;
     dob: string;
     captcha: string;
+    sex: string;
     admin: boolean;
     public get json() : any {
         return {
@@ -13,7 +14,8 @@ export class User {
             password : this.password,
             confirmPassword : this.confirmPassword,
             dob : this.dob,
-            admin: this.admin
+            admin: this.admin,
+            sex: this.sex
         }
     }
     constructor(cfg: any) {
@@ -24,5 +26,6 @@ export class User {
         this.dob = cfg.dob;
         this.captcha = cfg.captcha;
         this.admin = cfg.admin;
+        this.sex = cfg.sex;
     }
 }

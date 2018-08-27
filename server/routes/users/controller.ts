@@ -42,7 +42,7 @@ export class UsersController {
         user.email = req.body.email;
         user.username = req.body.username;
         let password = req.body.password;
-        
+        user.dob = req.body.dob;
         user.salt = Crypto.generateSalt(16);
         user.password = Crypto.generatePassword(password, user.salt);
         webConnection.manager.save(user)
@@ -54,7 +54,7 @@ export class UsersController {
                 login.sex = 'M';
                 login.group_id = 0;
                 login.lastlogin = moment().format('YYYY-MM-DD');
-                login.birthdate = moment().format('YYYY-MM-DD');
+                login.birthdate = req.body.dob;
                 rathenaConnection.manager.save(login)
                     .then((newLogin: Login)=>{
                         res.status(201).json(newLogin? newUser : {});

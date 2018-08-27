@@ -11,4 +11,12 @@ export class Characters {
             .getRawOne();
         return _.get(value, 'sum', 0);
     }
+    static async zeny() : Promise<number> {
+        let connection = await DBConnections.RAthenaConnection;
+        let value = await connection.getRepository(Character)
+            .createQueryBuilder('char')
+            .select('SUM(char.zeny)', "sum")
+            .getRawOne();
+        return _.get(value, 'sum', 0);
+    }
 }
