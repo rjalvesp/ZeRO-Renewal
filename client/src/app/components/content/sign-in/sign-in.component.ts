@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SignInComponent implements OnInit {
 
-  model: SignInModel = new SignInModel({username: 'causante', password: 'qwe123.A1'});
+  model: SignInModel = new SignInModel({username: '', password: ''});
   recaptcha: string = '6LcLrmgUAAAAAN9BknE-6Xtinc0IWFRJHO5y2FK9';
   disabled: boolean = false;
   constructor(
@@ -22,6 +22,7 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
   onSubmit() {
     this.disabled = true;

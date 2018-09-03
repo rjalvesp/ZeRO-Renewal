@@ -24,7 +24,6 @@ export class FaqsController {
             .skip(req.body.start)
             .getMany()
             .then((result: Array<any>)=>{
-                console.log(result);
                 webConnection.getRepository(Faq)
                     .createQueryBuilder('item')
                     .select('COUNT(*)', "count")

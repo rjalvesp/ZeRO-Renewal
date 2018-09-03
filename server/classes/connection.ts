@@ -15,6 +15,7 @@ import { Guild } from "../src/entity/guild";
 import { GuildCastle } from "../src/entity/guild-castle";
 import { Vending } from "../src/entity/vending";
 import { VendingItem } from '../src/entity/vending-item';
+import { PickLog } from '../src/entity/pick-log';
 export class DBConnections {
     static RAthenaConnection : Promise<any> = createConnection({
         name: 'rathena',
@@ -33,6 +34,20 @@ export class DBConnections {
             GuildMember,
             Vending,
             VendingItem
+        ],
+        synchronize: false,
+        logging: false
+    })
+    static LogConnection : Promise<any> = createConnection({
+        name: 'rathena_logs',
+        type: "mysql",
+        host: "127.0.0.1",
+        port: 3306,
+        username: "root",
+        password: "ram10110.S1",
+        database: "rathena_logs",
+        entities: [
+            PickLog
         ],
         synchronize: false,
         logging: false

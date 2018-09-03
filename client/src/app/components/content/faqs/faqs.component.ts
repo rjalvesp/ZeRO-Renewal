@@ -29,11 +29,9 @@ export class FaqsComponent implements OnInit, OnDestroy {
       Observable.create(observer => {
         // this.faqsCategoriesService.browse();
         this.faqsCategoriesService.rxJsBrowse().subscribe((faqCategories: Array<FaqCategory>)=>{
-          console.log(faqCategories);
           this.faqsService.rxJsBrowse().subscribe((faqs: Array<Faq>)=>{
             
             faqCategories.forEach((faqCategory: FaqCategory)=>{
-              console.log(faqCategory);
               this.items.push(new FaqGroup(faqCategory, faqs));
             });
             observer.next({

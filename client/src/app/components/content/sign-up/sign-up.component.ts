@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class SignUpComponent implements OnInit {
 
   recaptcha: string = '6LcLrmgUAAAAAN9BknE-6Xtinc0IWFRJHO5y2FK9';
-  model: User = new User({username: 'causante', email: 'rj@gmail.com', password: 'qwe123.A1', confirmPassword: 'qwe123.A1'});
+  model: User = new User({username: '', email: '', password: '', confirmPassword: ''});
   disabled: boolean = false;
   constructor(
     private usersService : UsersService, 
@@ -27,7 +27,6 @@ export class SignUpComponent implements OnInit {
     this.disabled = true;
     this.snotifyService.async('Signing up...', 
       Observable.create(observer => {
-        console.log('123');
         this.usersService.add(this.model).subscribe((user: User)=>{
           if (!user) return;
           this.model = user;

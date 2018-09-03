@@ -30,6 +30,9 @@ import { NpcsComponent } from '../components/content/info/npcs/npcs.component';
 import { DefaultComponent } from '../components/modules/default/default.component';
 import { RecoverPasswordComponent } from '../components/content/recover-password/recover-password.component';
 import { PlayersComponent } from '../components/content/database/players/players.component';
+import { GuildsComponent } from '../components/content/database/guilds/guilds.component';
+import { GuildViewComponent } from '../components/content/database/guilds/view/view.component';
+import { DatabaseCardsComponent } from '../components/content/database/database-cards/database-cards.component';
 const appRoutes: Routes = [
   
   {
@@ -77,7 +80,9 @@ const appRoutes: Routes = [
         component: DatabaseComponent,
         children: [
           { path: '', component: DatabaseGeneralComponent },
+          { path: 'cards', component: DatabaseCardsComponent },
           { path: 'general', component: DatabaseGeneralComponent },
+          { path: 'guilds', component: GuildsComponent },
           { path: 'players', component: PlayersComponent },
         ]
       },

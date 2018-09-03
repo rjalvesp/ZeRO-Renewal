@@ -1,3 +1,5 @@
+import { Guild } from "./guilds.model";
+
 export class Character {
     readonly char_id: number;
     readonly account_id: number;
@@ -59,8 +61,8 @@ export class Character {
     readonly sex: string;
     readonly hotkey_rowshift: number;
     readonly last_login: string;
+    guild: Guild;
     constructor(json: any) {
-        
         this.char_id = json.char_id;
         this.account_id = json.account_id;
         this.char_num = json.char_num;
@@ -121,5 +123,6 @@ export class Character {
         this.sex = json.sex;
         this.hotkey_rowshift = json.hotkey_rowshift;
         this.last_login = json.last_login;
+        this.guild = json.guild;
     }
 }

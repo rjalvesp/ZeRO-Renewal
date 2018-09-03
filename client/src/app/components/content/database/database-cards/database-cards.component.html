@@ -1,0 +1,9 @@
+
+<div class="p-3">
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 text-center pb-2" *ngFor="let item of items">
+        <img [src]="'/assets/images/' + item.id + '.jpg'" width="150" height="200"/>
+        <div>Total: {{item.total}}</div>
+    </div>
+  </div>
+</div>

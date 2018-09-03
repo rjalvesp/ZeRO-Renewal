@@ -1,0 +1,40 @@
+<div class="col pb-5">
+  <table datatable [dtOptions]="dtOptions" class="row-border hover text-black">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nivel</th>
+        <th>Nivel Promedio</th>
+        <th>Guild Master</th>
+        <th>Maximo Miembros</th>
+        <th>Castillos</th>
+        <th>Mas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td class="text-center">{{ item.guild_lv }}</td>
+        <td class="text-center">{{ item.average_lv }}</td>
+        <td class="text-center">{{ item.master }}</td>
+        <td class="text-center">{{ item.max_member }}</td>
+        <td class="text-center">{{ item.castles.length }}</td>
+        <td class="text-center">
+          <button class="btn btn-primary" (click)="goTo(item.guild_id)">
+            <i class="fas fa-eye"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="items?.length === 0">
+        <td colspan="5">No Records</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="zr-modal-container" *ngIf="showGuild">
+    <div class="zr-modal">
+        <app-guild-view [guild]="selectedGuild" (close)="onClose($event)" [isModal]="true">
+
+        </app-guild-view>
+    </div>
+</div>

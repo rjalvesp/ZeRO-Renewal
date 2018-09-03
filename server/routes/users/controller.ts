@@ -1,9 +1,11 @@
+import { GuildMember } from './../../src/entity/guild-member';
 import { RecoverPassword } from './../../src/entity/recover-password';
 import { Login } from './../../src/entity/login';
 import { User } from './../../src/entity/user';
 import { Crypto } from '../../classes/crypto';
 import { Character } from '../../src/entity/character';
 import { DBConnections } from '../../classes/connection';
+import { Guild } from '../../src/entity/guild';
 var _ = require('lodash');
 var moment = require('moment');
 export class UsersController {
@@ -79,6 +81,32 @@ export class UsersController {
             
                 let charRepository = await connection.getRepository(Character);
                 let characters = await charRepository.find({account_id: login.account_id});
+
+                let guildMembers = await connection.createQueryBuilder()
+                    .from(GuildMember, "guild_member")
+                    .where("guild_member.char_id in (:id)", 
+                        { 
+                            id: characters.length > 0? characters.map((char: any)=>{ return char.char_id }) : 0
+                        }
+                    )
+                    .getMany();
+                let guilds = await connection.createQueryBuilder()
+                    .from(Guild, "guild")
+                    .where("guild.guild_id in (:id)", 
+                        { 
+                            id: guildMembers.length > 0? _.uniq(guildMembers.map((guildMember: any)=>{ return guildMember.guild_id }) ) : 0
+                        }
+                    )
+                    .getMany()
+                guildMembers.forEach((guildMember: any)=>{
+                    guildMember.guild = guilds.find((guild: Guild)=>{ return guild.guild_id === guildMember.guild_id; });
+                })
+                characters.forEach((char: any)=>{
+                    let guildMember = guildMembers.find((guildMember: any)=>{
+                        guildMember.char_id === char.char_id
+                    });
+                    char.guild = guildMember? guildMember.guild : null;
+                })
                 res.status(200).json({...req.user, ...{characters: characters}});
             })
             .catch((error: any)=>{
@@ -93,7 +121,6 @@ export class UsersController {
         .where("user.email = :text or user.username = :text", { text: req.body.username })
         .getOne()
         .then(async (value: any)=>{
-            console.log(value);
             if (!value) return res.status(404).json({ok: false});
             let recoverPassword = new RecoverPassword();
             recoverPassword.id_user = value.id;

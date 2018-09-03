@@ -1,3 +1,4 @@
+import { GuildsService } from './services/guilds.service';
 import { AuthService } from './services/auth.service';
 import { TokenReducer } from './store/reducers/token.reducer';
 import { BrowserModule } from '@angular/platform-browser';
@@ -61,6 +62,11 @@ import { PlayersComponent } from './components/content/database/players/players.
 import { CardsComponent } from './components/content/database/cards/cards.component';
 import { CharactersService } from './services/character.service';
 import { DatabaseGeneralComponent } from './components/content/database/database-general/database-general.component';
+import { GuildsComponent } from './components/content/database/guilds/guilds.component';
+import { GuildViewComponent } from './components/content/database/guilds/view/view.component';
+import { CastlePipe } from './pipes/castle.pipe';
+import { DatabaseCardsComponent } from './components/content/database/database-cards/database-cards.component';
+import { ItemsService } from './services/items.service';
 
 
 @NgModule({
@@ -99,7 +105,11 @@ import { DatabaseGeneralComponent } from './components/content/database/database
     DatabaseComponent,
     PlayersComponent,
     CardsComponent,
-    DatabaseGeneralComponent
+    DatabaseGeneralComponent,
+    GuildsComponent,
+    GuildViewComponent,
+    CastlePipe,
+    DatabaseCardsComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +141,9 @@ import { DatabaseGeneralComponent } from './components/content/database/database
     FaqsService,
     FaqsCategoriesService,
     NewsService,
-    CharactersService
+    CharactersService,
+    GuildsService,
+    ItemsService
   ],
   bootstrap: [AppComponent]
 })

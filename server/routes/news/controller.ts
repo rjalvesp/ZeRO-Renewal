@@ -26,7 +26,6 @@ export class NewsController {
             .skip(req.body.start)
             .getMany()
             .then((result: Array<any>)=>{
-                console.log(result);
                 webConnection.getRepository(News)
                     .createQueryBuilder('item')
                     .select('COUNT(*)', "count")

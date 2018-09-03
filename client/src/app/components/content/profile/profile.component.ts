@@ -21,6 +21,6 @@ export class ProfileComponent implements OnInit {
     })
   }
   GoToAdmin(){
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/news']);
   }
 }

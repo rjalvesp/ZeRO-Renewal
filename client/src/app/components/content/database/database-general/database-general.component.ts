@@ -31,8 +31,6 @@ export class DatabaseGeneralComponent implements OnInit {
         Observable.create(observer => {
           this.charactersService.dashboard().subscribe((response: any)=>{
             this.dashboard = response;
-            console.log(response);
-            console.log(this.dashboard);
             observer.next({
               title: 'Completed',
               body: 'Data Fetched',

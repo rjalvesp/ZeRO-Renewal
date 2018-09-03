@@ -22,7 +22,6 @@ export class DatabaseComponent implements OnInit {
   load(route: string){
     let splittedRoute = route.split('/');
     this.activeRoute = splittedRoute.length === 2? 'general' : splittedRoute[2];
-    console.log(this.activeRoute);
   }
 
 }

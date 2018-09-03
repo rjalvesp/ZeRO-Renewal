@@ -252,3 +252,32 @@ input {
   .d-flex-fill {
     flex: 1 1 auto;
   }
+
+
+  .zr-modal-container {
+        position: absolute;
+        padding-top: 25%;
+        padding-bottom: 25%;
+        padding-right: 15%;
+        padding-left: 15%;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        left: 0px;
+        background-color: rgba(100, 100, 100, .7);
+        .zr-modal {
+            width: 100%;
+        }
+  }
+  .zr-guild {
+    .zr-guild__close {
+        cursor: pointer;
+        float: right;
+    }
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+    * {
+        color: black !important
+    }
+  }

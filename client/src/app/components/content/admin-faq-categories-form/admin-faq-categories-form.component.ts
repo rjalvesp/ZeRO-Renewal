@@ -28,8 +28,7 @@ export class AdminFaqCategoriesFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id : string = this.route.snapshot.paramMap.get('id'); 
-    console.log(id);
+    let id : string = this.route.snapshot.paramMap.get('id');
     if (!id) return;
     this.LoadModel(parseInt(id, 10));
   }

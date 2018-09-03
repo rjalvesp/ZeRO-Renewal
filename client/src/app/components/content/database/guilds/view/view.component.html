@@ -1,0 +1,75 @@
+<div *ngIf="guild" class="zr-guild rounded">
+    <div *ngIf="isModal" class="zr-guild__close" (click)="onClose($event)"><i class="fas fa-times"></i></div>
+    <div class="p-3 zr-guild__header">
+      <h3>Guild {{guild.name}}</h3>
+      <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Nivel:</u> {{guild.guild_lv}}
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Max Miembros:</u> {{guild.max_member}} 
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Exp:</u> {{guild.exp}}
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Proximo Nivel:</u> {{guild.next_exp}}
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Guild Master:</u> {{guild.master}}
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Miembros:</u> {{guild.members.length}}
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Castillos:</u> {{guild.castles.length}}
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+              <u>Nivel Promedio:</u> {{guild.average_lv}}
+          </div>
+      </div>
+    </div>
+    
+    <div class="p-3 zr-guild__castles">
+        <h3>Castillos</h3>
+        <div class="row" *ngIf="guild.castles.length === 0">
+          No tiene castillos :(
+        </div>
+        <div *ngFor="let castle of guild.castles" class="row">
+              <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <u>{{castle.castle_id | castle}}</u>
+              </div>
+              <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <u>Defensa:</u> {{castle.defense}}
+              </div>
+              <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <u>Economia:</u> {{castle.economy}}
+              </div>
+        </div>
+      </div>
+    <div class="p-3 zr-guild__members">
+      <h3>Miembros</h3>
+      <div *ngFor="let member of guild.members" class="row">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <u>Nombre:</u> {{ member.name }}
+            </div>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-4">
+                <u>Nivel:</u> {{ member.lv }}
+            </div>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-4">
+                <u>Sexo:</u> {{ member.sex? 'F' : 'M' }}
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <u>Clase:</u> {{ member.className.name }}
+            </div>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-4">
+                <u>Exp Aportada:</u> {{ member.exp }}
+            </div>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-4">
+                <u>Exp %:</u> {{ member.exp_payper }}%
+            </div>
+      </div>
+    </div>
+</div>

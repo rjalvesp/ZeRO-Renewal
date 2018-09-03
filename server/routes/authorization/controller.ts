@@ -46,8 +46,6 @@ export class AuthorizationController {
     static refresh = (req: any, res: any)=> {
         // TokensCollection.all({ selector : { bearer : req.body.bearer } } )
         // .then((response)=>{
-        //     console.log(req.body);
-        //     console.log(req.user);
         //     if (response.length === 0)  return res.status(400).json({error: 'Invalid token', status: 400});
         //     let user : User = <User>req.user;
         //     user.deleteTokens()

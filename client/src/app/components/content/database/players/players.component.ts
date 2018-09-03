@@ -42,7 +42,6 @@ export class PlayersComponent implements OnInit {
                 item.className = this.classes.find((jobClass: JobClass)=>{ return jobClass.id === item.class;}).name;
                 return item;
             });
-            console.log(this.items);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,

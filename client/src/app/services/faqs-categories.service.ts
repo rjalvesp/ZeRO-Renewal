@@ -19,7 +19,6 @@ export class FaqsCategoriesService {
   browse() {
     this.http.get<Array<FaqCategory>>(this.baseUrl, httpOptions)
       .subscribe((models: Array<FaqCategory>)=>{
-        console.log(models);
         this.collectionSubject.next(this.deserializeArray(models));
       });
   }

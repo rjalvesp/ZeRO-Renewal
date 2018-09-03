@@ -28,7 +28,6 @@ export class CharsController {
                     recordsFiltered: collection.length,
                     data: [],
                 };
-                console.log(result);
                 JobClassCollection.items.forEach((item: JobClass)=>{
                     let totalItem = result.find((row: any)=>{ return row.class === item.id });
                     dtResult.data.push(new JobClassTotal(item, !totalItem? 0 : parseInt(totalItem.total.toString(), 10)));
@@ -37,7 +36,6 @@ export class CharsController {
                 res.status(200).json(dtResult);
             })
             .catch((error: any)=>{
-                console.log(error);
                 res.status(500).json(error);
             })
     }
