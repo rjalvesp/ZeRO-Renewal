@@ -11,5 +11,9 @@ export class DonateComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  goTo(){
+    window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QKHRGYNTZUC2Y", '_blank');
+  }
 
 }
