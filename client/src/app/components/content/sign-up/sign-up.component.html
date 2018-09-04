@@ -25,10 +25,11 @@
           <input type="date" placeholder="Date of Birth" required [(ngModel)]="model.dob" name="dob" #dob="ngModel"/>
         </div>
         <div class="col-12" class="zr-form-container p-2">
-            <label class="text-white pr-3"><i class="fas fa-calendar"></i></label>
-            <select placeholder="Sex" required [(ngModel)]="model.sex" name="sex" #sex="ngModel">
-                <option [value]="F">Femenino</option>
-                <option [value]="M">Masculino</option>
+            <label class="text-white pr-3"><i class="fas fa-genderless"></i></label>
+            <select placeholder="Sex" required [(ngModel)]="model.sex" name="sex" #sex="ngModel" class="zr-select ml-1">
+                <option [value]="undefined" disabled>Sexo</option>
+                <option [value]="'F'">Femenino</option>
+                <option [value]="'M'">Masculino</option>
             </select>
         </div>
         <div class="col-12" class="zr-form-container p-3">
